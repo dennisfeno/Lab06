@@ -2,6 +2,12 @@ package it.polito.tdp.meteo.bean;
 
 import java.util.List;
 
+/**
+ * salvo le informazioni di tutto il mese, al passo ricorsivo aggiungo istanze di simple city. 
+ * @author Dennis
+ *
+ */
+
 public class Citta {
 
 	private String nome;
@@ -73,6 +79,11 @@ public class Citta {
 	@Override
 	public String toString() {
 		return nome;
+	}
+
+	public void decreaseCounter() {
+		this.counter -= 1;
+		
 	}
 	
 }

@@ -11,6 +11,8 @@ import javafx.scene.control.TextArea;
 
 public class MeteoController {
 
+	Model m = null ; 
+	
 	@FXML
 	private ResourceBundle resources;
 
@@ -18,7 +20,7 @@ public class MeteoController {
 	private URL location;
 
 	@FXML
-	private ChoiceBox<?> boxMese;
+	private ChoiceBox<Integer> boxMese;
 
 	@FXML
 	private Button btnCalcola;
@@ -32,11 +34,22 @@ public class MeteoController {
 	@FXML
 	void doCalcolaSequenza(ActionEvent event) {
 
+		txtResult.clear() ;
+		
+		String s = m.trovaSequenza(boxMese.getValue() ) ;
+		
+		txtResult.appendText("La sequenza è: "+ s + " e costa: "+ m.getBest()); 
+
 	}
 
 	@FXML
 	void doCalcolaUmidita(ActionEvent event) {
-
+		
+		txtResult.clear() ;
+		
+		String s = m.getUmiditaMedia(boxMese.getValue());
+		
+		txtResult.appendText(s) ;
 	}
 
 	@FXML
@@ -45,6 +58,18 @@ public class MeteoController {
 		assert btnCalcola != null : "fx:id=\"btnCalcola\" was not injected: check your FXML file 'Meteo.fxml'.";
 		assert btnUmidita != null : "fx:id=\"btnUmidita\" was not injected: check your FXML file 'Meteo.fxml'.";
 		assert txtResult != null : "fx:id=\"txtResult\" was not injected: check your FXML file 'Meteo.fxml'.";
+	}
+
+	public void setModel(Model m) {
+
+		this.m = m ; 
+		
+		for (int i=1 ; i<=12 ; i++ ){
+			boxMese.getItems().add(i) ;
+		}
+		
+		boxMese.setValue(boxMese.getItems().get(0));
+		
 	}
 
 }

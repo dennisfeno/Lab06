@@ -1,5 +1,11 @@
 package it.polito.tdp.meteo.bean;
 
+/**
+ * classe utilizzata per salvare una soluzione corrente.
+ * @author Dennis
+ *
+ */
+
 public class SimpleCity {
 
 	private String nome;

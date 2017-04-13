@@ -2,6 +2,12 @@ package it.polito.tdp.meteo.bean;
 
 import java.util.Date;
 
+/**
+ * contiene effettivamente le info del db java bin
+ * @author Dennis
+ *
+ */
+
 public class Rilevamento {
 
 	private String localita;
