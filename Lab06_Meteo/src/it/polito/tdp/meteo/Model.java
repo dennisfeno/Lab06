@@ -88,9 +88,9 @@ public class Model {
 	private void recursive(List<SimpleCity> sol, int step){
 		
 		// Sono arrivato al giorno 15
-		if (step == (NUMERO_GIORNI_TOTALI -1) ){
+		if (step >= NUMERO_GIORNI_TOTALI ){
 			
-			if(punteggioSoluzione(sol)<best && checkSuccessivi(sol)){
+			if(punteggioSoluzione(sol)<best){ //&& checkSuccessivi(sol)){
 				best = punteggioSoluzione(sol);
 				bestS = new ArrayList<SimpleCity>(sol);
 				//System.out.println(bestS + " - "+ best);	
@@ -118,7 +118,7 @@ public class Model {
 		}
 		
 	}
-	
+	/*
 	private boolean checkSuccessivi(List<SimpleCity> sol) {
 
 			int count = 0 ;
@@ -154,7 +154,7 @@ public class Model {
 		
 		return true;
 	}
-
+	 */
 	/**
 	 * costo totale di una soluzione. 
 	 */
@@ -196,12 +196,23 @@ public class Model {
 			}
 		}
 		
-//		qua non faccio il controllo sui successivi perché non so cosa metto dopo, 
-//		potrei farlo su quelli già messi ma tanto lo faccio dopo
-//		if (size > 2 )
-//			if (!checkSuccessivi(parziale))
-//				return false ;
-//					
+		// Controllo sul vincolo del numero minimo di giorni consecutivi
+		SimpleCity previous = parziale.get(0);
+		int counter = 0;
+		
+		for (SimpleCity sc : parziale) {
+			if (!previous.equals(sc)) {
+				if (counter < NUMERO_GIORNI_CITTA_CONSECUTIVI_MIN) {
+					return false;
+				}
+				counter = 1;
+				previous = sc;
+			} else {
+				counter++;
+			}
+		}
+		
+				
 		return true;
 	}
 
